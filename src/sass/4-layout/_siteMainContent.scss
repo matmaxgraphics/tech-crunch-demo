@@ -17,6 +17,10 @@
 /*==============SINGLR ARTICLE PAGE STYLING==========*/
 .blog--wrapper {
   margin-top: 64px;
+  .article--container{
+    width: 80%;
+    margin: auto;
+  }
   .article--title {
     margin-bottom: 24px;
   }
@@ -79,6 +83,24 @@
     margin-bottom: 16px;
     &:last-child {
       margin-bottom: unset;
+    }
+  }
+}
+
+@media(max-width: 900px){
+  .blog--wrapper {
+    .article--container{
+      width: 90%;
+      margin: auto;
+    }
+  }
+}
+
+@media(max-width: 650px){
+  .blog--wrapper {
+    .article--container{
+      width: 100%;
+      margin: auto;
     }
   }
 }
