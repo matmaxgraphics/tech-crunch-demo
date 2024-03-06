@@ -45,19 +45,23 @@ function SingleArticle() {
     fetchData();
   }, [id]);
 
-  const stripArticleData = (articleData)=>{
+  const stripArticleData = (articleData) => {
     return {
-        id: articleData.id,
-        date: articleData.date,
-        author: articleData.yoast_head_json?.author,
-        title: articleData.title?.rendered,
-        image: articleData.jetpack_featured_media_url,
-        content: articleData.content?.rendered,
-      };
-  }
+      id: articleData.id,
+      date: articleData.date,
+      author: articleData.yoast_head_json?.author,
+      title: articleData.title?.rendered,
+      image: articleData.jetpack_featured_media_url,
+      content: articleData.content?.rendered,
+    };
+  };
 
   if (error || !article) {
-    return <div>Something went wrong, please try again</div>;
+    return (
+      <div className="max-width error-message">
+        <p>Something went wrong, please try again</p>
+      </div>
+    );
   }
 
   const createMarkup = (htmlContent) => {
@@ -68,26 +72,20 @@ function SingleArticle() {
     <>
       <Navbar />
       <section className="blog--wrapper max-width">
-        {isLoading && <SkeletonLoader/>}
+        {isLoading && <SkeletonLoader />}
         {!isLoading && (
           <div className="article--container">
             <h1 className="article--title">{article.title}</h1>
             <div className="meta--description">
               <small
                 className="blog--author"
-                dangerouslySetInnerHTML={createMarkup(
-                  article.author
-                )}
+                dangerouslySetInnerHTML={createMarkup(article.author)}
               ></small>
               <div></div>
               <small className="blog--time">{formatDate(article.date)}</small>
             </div>
 
-            <img
-              src={article.image}
-              alt=""
-              className="article--banner"
-            />
+            <img src={article.image} alt="" className="article--banner" />
             <article
               className="article--main_content"
               dangerouslySetInnerHTML={createMarkup(article.content)}

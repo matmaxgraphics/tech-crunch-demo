@@ -44,7 +44,7 @@ function AllArticles() {
   }, [page]);
 
   if (error) {
-    return <div>Something went wrong, please try again</div>;
+    return <div className="max-width error-message"><p>Something went wrong, please try again</p></div>;
   }
 
   const createMarkup = (htmlContent) => {
