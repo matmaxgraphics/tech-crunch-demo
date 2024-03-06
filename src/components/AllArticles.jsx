@@ -27,7 +27,7 @@ function AllArticles() {
         const posts = await response.json();
         
 
-        setPosts(posts);
+        setPosts((prevPosts) => [...prevPosts, ...posts]);
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("Aborted");
