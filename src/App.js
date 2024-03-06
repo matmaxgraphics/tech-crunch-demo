@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./sass/main.scss";
 
 import Navbar from "./components/Navbar";

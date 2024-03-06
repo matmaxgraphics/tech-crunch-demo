@@ -1,7 +1,10 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import blogImg from "../images/mini.png";
 
+
 function LatestArticle() {
+  
   return (
     <section className="latest-article max-width">
       <div className="inner--wrapper">

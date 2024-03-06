@@ -37,24 +37,24 @@
     }
     .bottom--action {
       margin-top: 24px;
-      .text--link{
+      .text--link {
         display: flex;
         align-items: center;
         gap: 8px;
         transition: $transitionDuration;
-        &:hover{
+        &:hover {
           color: $bodyTextColor;
           transition: $transitionDuration;
         }
       }
-      .arrow-icon{
+      .arrow-icon {
         font-size: 18px;
       }
     }
   }
 }
 
-@media(max-width: 800px){
+@media (max-width: 800px) {
   .latest-article {
     .inner--wrapper {
       display: flex;
@@ -71,12 +71,11 @@
   }
 }
 
-
-.load-more__cta{
+.load-more__cta {
   display: flex;
   justify-content: center;
   margin: 64px 0;
-  button{
+  button {
     background-color: transparent;
     color: $primaryColor;
     font-weight: 600;
@@ -86,5 +85,67 @@
       transition: $transitionDuration;
     }
   }
-
 }
+
+/*==============SINGLR ARTICLE PAGE STYLING==========*/
+.blog--wrapper {
+  margin-top: 64px;
+  .article--title {
+    margin-bottom: 24px;
+  }
+  .article--banner {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 32px;
+  }
+  .meta--description {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    div {
+      width: 4px;
+      height: 4px;
+      background-color: #222;
+      border-radius: 50%;
+    }
+  }
+}
+.article--main_content {
+  // margin-top: 24px;
+  padding: 24px;
+  p {
+    margin-bottom: 24px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    margin: 16px 0 24px;
+  }
+  h2,
+  h3,
+  h4 {
+    margin: 32px 0 16px;
+  }
+
+  cite {
+    display: block;
+    font-style: italic;
+    margin-top: 8px;
+    color: #666;
+  }
+  ol,
+  ul {
+    margin-left: 32px;
+    font-family: $fontFamily;
+    font-size: $bodyFontSize;
+  }
+  li {
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+}
+/*==============END OF SINGLE ARTICLE PAGE STYLING==========*/
