@@ -31,8 +31,9 @@ function SingleArticle() {
         }
         const articleData = await response.json();
 
-        setArticle(articleData);
-        console.log(articleData);
+        const strippedArticleData = stripArticleData(articleData);
+
+        setArticle(strippedArticleData);
       } catch (error) {
         setError(error);
         console.log(error);
@@ -43,6 +44,17 @@ function SingleArticle() {
     };
     fetchData();
   }, [id]);
+
+  const stripArticleData = (articleData)=>{
+    return {
+        id: articleData.id,
+        date: articleData.date,
+        author: articleData.yoast_head_json?.author,
+        title: articleData.title?.rendered,
+        image: articleData.jetpack_featured_media_url,
+        content: articleData.content?.rendered,
+      };
+  }
 
   if (error || !article) {
     return <div>Something went wrong, please try again</div>;
@@ -59,12 +71,12 @@ function SingleArticle() {
         {isLoading && <SkeletonLoader/>}
         {!isLoading && (
           <div className="article--container">
-            <h1 className="article--title">{article.title?.rendered}</h1>
+            <h1 className="article--title">{article.title}</h1>
             <div className="meta--description">
               <small
                 className="blog--author"
                 dangerouslySetInnerHTML={createMarkup(
-                  article.yoast_head_json?.author
+                  article.author
                 )}
               ></small>
               <div></div>
@@ -72,13 +84,13 @@ function SingleArticle() {
             </div>
 
             <img
-              src={article.jetpack_featured_media_url}
+              src={article.image}
               alt=""
               className="article--banner"
             />
             <article
               className="article--main_content"
-              dangerouslySetInnerHTML={createMarkup(article.content?.rendered)}
+              dangerouslySetInnerHTML={createMarkup(article.content)}
             ></article>
           </div>
         )}

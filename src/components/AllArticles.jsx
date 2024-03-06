@@ -25,6 +25,7 @@ function AllArticles() {
           signal: abortControllerRef.current?.signal,
         });
         const posts = await response.json();
+        
 
         setPosts(posts);
       } catch (error) {
@@ -38,7 +39,6 @@ function AllArticles() {
         setIsLoading(false);
       }
       setIsLoading(false);
-      console.log(posts);
     };
     fetchData();
   }, [page]);
