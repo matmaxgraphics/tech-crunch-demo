@@ -27,7 +27,7 @@ function AllArticles() {
         const posts = await response.json();
         
 
-        setPosts((prevPosts) => [...prevPosts, ...posts]);
+        setPosts(posts);
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("Aborted");
@@ -50,9 +50,8 @@ function AllArticles() {
   const createMarkup = (htmlContent) => {
     return { __html: htmlContent };
   };
-  //   if(isLoading){
-  //     return <div>loading...</div>
-  //   }
+  
+  
   return (
     <section className="article-explore max-width">
       <div className="inner--wrapper">

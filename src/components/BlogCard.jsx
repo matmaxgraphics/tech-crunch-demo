@@ -5,15 +5,24 @@ function BlogCard({ post }) {
   const createMarkup = (htmlContent) => {
     return { __html: htmlContent };
   };
+
+  const formatDate = (dateString) => {
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      "en-US",
+      options
+    );
+    return formattedDate;
+  };
   return (
     <div className="blog--card" key={post.id}>
       <img src={post.jetpack_featured_media_url} alt="" />
       <article className="blog--description">
         <header>
           <div className="meta--description">
-            <small className="blog--tag">Frontend</small>
+            <small className="blog--tag">{post.primary_category.name}</small>
             <div></div>
-            <small className="blog--time">1 hour ago</small>
+            <small className="blog--time">{formatDate(post.date)}</small>
           </div>
           <h4 className="blog--title">{post.title.rendered}</h4>
         </header>
