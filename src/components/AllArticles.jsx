@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 
+import SkeletonLoader from "./SkeletonLoader";
 import BlogCard from "./BlogCard";
 
 
@@ -57,7 +58,7 @@ function AllArticles() {
       <div className="inner--wrapper">
         <h2>Explore Articles</h2>
         <div className="blog-cards__container">
-          {isLoading && <div>Loading...</div>}
+          {isLoading && <SkeletonLoader/>}
           {!isLoading &&
             posts.map((post) => <BlogCard key={post.id} post={post} />)}
         </div>

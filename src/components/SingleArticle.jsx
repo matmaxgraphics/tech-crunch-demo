@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchData } from "./HTTPRequests/useGetRequest";
+import SkeletonLoader from "./SkeletonLoader";
 import Navbar from "./Navbar";
 import blogImg from "../images/mini.png";
 
@@ -56,27 +56,32 @@ function SingleArticle() {
     <>
       <Navbar />
       <section className="blog--wrapper max-width">
-        {isLoading && <div>Loading...</div>}
-        {/* {!isLoading && */}
+        {isLoading && <SkeletonLoader/>}
+        {!isLoading && (
+          <div className="article--container">
+            <h1 className="article--title">{article.title?.rendered}</h1>
+            <div className="meta--description">
+              <small
+                className="blog--author"
+                dangerouslySetInnerHTML={createMarkup(
+                  article.yoast_head_json?.author
+                )}
+              ></small>
+              <div></div>
+              <small className="blog--time">{formatDate(article.date)}</small>
+            </div>
 
-        <div className="article--container">
-          <h1 className="article--title">{article.title?.rendered}</h1>
-          <div className="meta--description">
-            <small className="blog--author" dangerouslySetInnerHTML={createMarkup(article.yoast_head_json?.author)}></small>
-            <div></div>
-            <small className="blog--time">{formatDate(article.date)}</small>
+            <img
+              src={article.jetpack_featured_media_url}
+              alt=""
+              className="article--banner"
+            />
+            <article
+              className="article--main_content"
+              dangerouslySetInnerHTML={createMarkup(article.content?.rendered)}
+            ></article>
           </div>
-
-          <img
-            src={article.jetpack_featured_media_url}
-            alt=""
-            className="article--banner"
-          />
-          <article
-            className="article--main_content"
-            dangerouslySetInnerHTML={createMarkup(article.content?.rendered)}
-          ></article>
-        </div>
+        )}
       </section>
     </>
   );
